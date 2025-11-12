@@ -31,7 +31,7 @@ public class SpringSecurity {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/journal/**", "/user/**").authenticated()
-                        .requestMatchers("/admin/**").hasRole("ADMIN") // role maps to authority "ROLE_ADMIN"
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

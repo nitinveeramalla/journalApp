@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,13 @@ public class UserService {
 
     public void saveNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(List.of("USER"));
+        user.setRoles(Arrays.asList("USER"));
+        userRepository.save(user);
+    }
+
+    public void saveAdmin(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList("USER", "ADMIN"));
         userRepository.save(user);
     }
 
